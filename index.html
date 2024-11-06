@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт-признание в любви</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icons8-сердце-16.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>ЭТО ЛЮБОВЬ?</h1>
+    
+        <button id="openVideoButton" class="btn btn-white btn-        animate">Любовь</button>
+        <div id="videoContainer" class="fullscreen-container">
+            <button id="closeVideoButton" class="close-button">X</button>
+            <iframe id="videoIframe" class="fullscreen-iframe" src="" allowfullscreen></iframe>
+        </div>
+    
+        <script>
+            document.getElementById('openVideoButton').addEventListener('click', function() {
+                var iframe = document.getElementById('videoIframe');
+                var container = document.getElementById('videoContainer');
+                iframe.src = "Video/lv_0_20241106232254.mp4";
+                container.style.display = 'flex';
+            });
+    
+            document.getElementById('closeVideoButton').addEventListener('click', function() {
+                var iframe = document.getElementById('videoIframe');
+                var container = document.getElementById('videoContainer');
+                iframe.src = ""; // Очистить src, чтобы остановить видео
+                container.style.display = 'none';
+            });
+        </script>
+        <!--<div class="button-container">
+            <a href="video.html" class="btn btn-white btn-        animate">Любовь</a>
+        </div>-->
+       
+    </header>
+    <main>
+        <h2>ФОТОПЛЕНКА ЛЮБВИ</h2>
+        <div class="albums-container">
+            <div class="album-cover" data-album="album1">
+                <img src="Photos/February2023/photo_2023-02-26_13-51-33.jpg" alt="Album 1 Cover">
+                <div class="caption">Декабрь 2022 - Март 2023</div>
+            </div>
+            <div class="album-cover" data-album="album2">
+                <img src="Photos/November2023/photo_2023-11-13_05-32-31.jpg" alt="Album 2 Cover">
+                <div class="caption">Апрель 2023 - Июль 2023</div>
+            </div>
+            <div class="album-cover" data-album="album3">
+                <img src="Photos/September2023/photo_2023-09-01_12-13-56.jpg" alt="Album 3 Cover">
+                <div class="caption">Август 2023 - Ноябрь 2023</div>
+            </div>
+            <div class="album-cover" data-album="album4">
+                <img src="Photos/December2023/photo_2024-03-27_16-18-28.jpg" alt="Album 4 Cover">
+                <div class="caption">Декабрь 2023 - Март 2024</div>
+            </div>
+            <div class="album-cover" data-album="album5">
+                <img src="Photos/Aprel2024/photo_2024-05-20_15-05-49.jpg" alt="Album 5 Cover">
+                <div class="caption">Апрель 2024 - Июль 2024</div>
+            </div>
+            <div class="album-cover" data-album="album6">
+                <img src="Photos/August24/photo_2024-09-27_00-52-06.jpg" alt="Album 6 Cover">
+                <div class="caption">Август 2024 - Ноябрь 2024</div>
+            </div>
+            
+        </div>
+        <div class="photo-player" id="photoPlayer">
+            <button class="close-button" id="closePhotoPlayer">X</button>
+            <button class="nav-button prev-button" id="prevPhoto"><</button>
+            <button class="nav-button next-button" id="nextPhoto">></button>
+            <img src="" alt="Photo Player" id="photoPlayerImg">
+        </div>
+        <script>
+            const albumCovers = document.querySelectorAll('.album-cover');
+            const photoPlayer = document.getElementById('photoPlayer');
+            const photoPlayerImg = document.getElementById('photoPlayerImg');
+            const closePhotoPlayer = document.getElementById('closePhotoPlayer');
+            const prevPhoto = document.getElementById('prevPhoto');
+            const nextPhoto = document.getElementById('nextPhoto');
+            let currentAlbum = [];
+            let currentIndex = 0;
+    
+            const albums = {
+                album1: [
+                    'Photos/December2022/photo_2022-12-30_19-28-44.jpg',
+                    'Photos/December2022/photo_2022-12-29_09-09-50.jpg',
+                    'Photos/December2022/photo_2022-12-29_17-29-42.jpg',
+                    'Photos/December2022/photo_2022-12-30_00-10-29.jpg',
+                    'Photos/December2022/photo_2022-12-31_22-20-11.jpg',
+                    'Photos/December2022/photo_2022-12-31_22-34-27.jpg',
+                    'Photos/Jenuary2023/photo_2023-01-10_18-25-44.jpg',
+                    'Photos/Jenuary2023/photo_2023-01-03_11-49-22.jpg',
+                    'Photos/Jenuary2023/photo_2023-01-06_19-37-33.jpg',
+                    'Photos/Jenuary2023/photo_2023-01-09_10-45-42.jpg',
+                    'Photos/Jenuary2023/photo_2023-01-07_19-44-44.jpg',
+                    'Photos/Jenuary2023/photo_2023-01-16_21-26-13.jpg',
+                    'Photos/Jenuary2023/photo_2023-01-18_02-22-23.jpg',
+                    'Photos/Jenuary2023/photo_2023-01-19_09-22-29.jpg',
+                    'Photos/Jenuary2023/photo_2023-01-29_00-51-48.jpg',
+                    'Photos/Jenuary2023/photo_2023-01-20_09-13-03.jpg',
+                    'Photos/February2023/photo_2023-02-26_20-44-34.jpg',
+                    'Photos/February2023/photo_2023-01-30_10-32-51.jpg',
+                    'Photos/February2023/photo_2023-02-07_15-14-36.jpg',
+                    'Photos/February2023/photo_2023-02-07_22-27-48.jpg',
+                    'Photos/February2023/photo_2023-02-08_18-40-44.jpg',
+                    'Photos/February2023/photo_2023-02-11_20-00-46.jpg',
+                    'Photos/February2023/photo_2023-02-13_00-09-52.jpg',
+                    'Photos/February2023/photo_2023-02-13_17-05-03.jpg',
+                    'Photos/February2023/photo_2023-02-16_19-53-29.jpg',
+                    'Photos/February2023/photo_2023-02-19_20-33-53.jpg',
+                    'Photos/February2023/photo_2023-02-24_18-28-00.jpg',
+                    'Photos/February2023/photo_2023-02-24_18-28-24.jpg',
+                    'Photos/February2023/photo_2023-02-26_13-51-33.jpg',
+                    'Photos/March2023/photo_2023-03-07_04-26-52.jpg',
+                    'Photos/March2023/photo_2023-03-01_04-28-24.jpg',
+                    'Photos/March2023/photo_2023-03-07_04-37-54.jpg',
+                    'Photos/March2023/photo_2023-03-12_18-28-40.jpg',
+                    'Photos/March2023/photo_2023-03-12_18-29-48.jpg',
+                    'Photos/March2023/photo_2023-03-19_13-29-03.jpg',
+                    'Photos/March2023/photo_2023-03-22_13-02-24.jpg',
+                    'Photos/March2023/photo_2023-03-22_13-05-04.jpg',
+                    'Photos/March2023/photo_2023-03-28_19-13-17.jpg',
+                ],
+                album2: [
+                    'Photos/April2023/photo_2023-04-27_21-32-22.jpg',
+                    'Photos/April2023/photo_2023-04-04_15-25-13.jpg',
+                    'Photos/April2023/photo_2023-04-06_20-37-07.jpg',
+                    'Photos/April2023/photo_2023-04-07_07-55-38.jpg',
+                    'Photos/April2023/photo_2023-04-10_21-58-30.jpg',
+                    'Photos/April2023/photo_2023-04-14_22-58-25.jpg',
+                    'Photos/April2023/photo_2023-04-27_10-13-19.jpg',
+                    'Photos/April2023/photo_2023-04-27_10-13-37.jpg',
+                    'Photos/April2023/photo_2023-04-27_10-13-57.jpg',
+                    'Photos/April2023/photo_2023-04-27_10-14-04.jpg',
+                    'Photos/April2023/photo_2023-04-28_19-39-35.jpg',
+                    'Photos/May2023/photo_2023-05-30_18-49-15.jpg',
+                    'Photos/May2023/photo_2023-05-02_10-55-34.jpg',
+                    'Photos/May2023/photo_2023-05-07_00-42-23.jpg',
+                    'Photos/May2023/photo_2023-05-08_05-40-37.jpg',
+                    'Photos/May2023/photo_2023-05-19_18-13-10.jpg',
+                    'Photos/May2023/photo_2023-05-19_18-13-53.jpg',
+                    'Photos/May2023/photo_2023-05-19_18-13-56.jpg',
+                    'Photos/May2023/photo_2023-05-22_19-19-31.jpg',
+                    'Photos/June2023/photo_2023-06-29_01-31-30.jpg',
+                    'Photos/June2023/photo_2023-06-01_13-14-28.jpg',
+                    'Photos/June2023/photo_2023-06-04_01-31-32.jpg',
+                    'Photos/June2023/photo_2023-06-04_01-31-39.jpg',
+                    'Photos/June2023/photo_2023-06-04_01-31-50.jpg',
+                    'Photos/June2023/photo_2023-06-04_01-32-03.jpg',
+                    'Photos/June2023/photo_2023-06-05_00-31-24.jpg',
+                    'Photos/June2023/photo_2023-06-09_10-22-35.jpg',
+                    'Photos/June2023/photo_2023-06-13_00-28-53.jpg',
+                    'Photos/June2023/photo_2023-06-17_16-42-05.jpg',
+                    'Photos/June2023/photo_2023-06-26_14-31-31.jpg',
+                    'Photos/July2023/photo_2023-07-02_23-22-11.jpg',
+                    'Photos/July2023/photo_2023-07-06_19-25-59.jpg',
+                    'Photos/July2023/photo_2023-07-09_14-47-41.jpg',
+                    'Photos/July2023/photo_2023-07-14_19-27-32.jpg',
+                    'Photos/July2023/photo_2023-07-18_02-55-44.jpg',
+                    'Photos/July2023/photo_2023-07-30_14-49-19.jpg',
+
+                ],
+                album3: [
+                    'Photos/August2023/photo_2023-08-03_18-00-21.jpg',
+                    'Photos/August2023/photo_2023-08-03_18-02-52.jpg',
+                    'Photos/August2023/photo_2023-08-18_13-32-35.jpg',
+                    'Photos/August2023/photo_2023-08-28_18-01-45.jpg',
+                    'Photos/September2023/photo_2023-09-01_12-13-56.jpg',
+                    'Photos/September2023/photo_2023-09-01_12-13-32.jpg',
+                    'Photos/September2023/photo_2023-09-02_12-48-38.jpg',
+                    'Photos/September2023/photo_2023-09-09_16-42-17.jpg',
+                    'Photos/September2023/photo_2023-09-11_10-40-21.jpg',
+                    'Photos/September2023/photo_2023-09-27_09-01-11.jpg',
+                    'Photos/October2023/photo_2023-10-14_10-58-16.jpg',
+                    'Photos/October2023/photo_2023-10-15_18-08-27.jpg',
+                    'Photos/October2023/photo_2023-10-15_18-08-28.jpg',
+                    'Photos/October2023/photo_2023-10-29_23-33-29.jpg',
+                    'Photos/October2023/photo_2023-10-31_10-33-00.jpg',
+                    'Photos/October2023/photo_2023-10-31_10-33-17.jpg',
+                    'Photos/November2023/photo_2023-11-09_15-59-43.jpg',
+                    'Photos/November2023/photo_2023-11-13_05-32-31.jpg',
+                    'Photos/November2023/photo_2023-11-20_10-56-22.jpg',
+                    'Photos/November2023/photo_2023-11-20_10-56-28.jpg',
+                    'Photos/November2023/photo_2023-11-22_21-42-58.jpg',
+                    'Photos/November2023/photo_2023-11-27_15-18-43.jpg',
+                    
+                    
+                ],
+                album4: [
+                    'Photos/December2023/photo_2023-12-30_21-57-21.jpg',
+                    'Photos/December2023/photo_2024-01-02_15-19-17.jpg',
+                    'Photos/December2023/photo_2024-01-05_01-32-13.jpg',
+                    'Photos/December2023/photo_2024-02-15_01-52-51.jpg',
+                    'Photos/December2023/photo_2024-02-15_01-52-53.jpg',
+                    'Photos/December2023/photo_2024-03-03_18-03-20.jpg',
+                    'Photos/December2023/photo_2024-03-07_19-41-10.jpg',
+                    'Photos/December2023/photo_2024-03-21_12-40-16.jpg',
+                    'Photos/December2023/photo_2024-03-21_16-20-48.jpg',
+                    'Photos/December2023/photo_2024-03-25_16-54-02.jpg',
+                    'Photos/December2023/photo_2024-03-27_16-18-28.jpg',
+                ],
+                album5: [
+                    'Photos/Aprel2024/photo_2024-04-16_21-50-32.jpg',
+                    'Photos/Aprel2024/photo_2024-04-16_21-59-17.jpg',
+                    'Photos/Aprel2024/photo_2024-04-19_20-20-45.jpg',
+                    'Photos/Aprel2024/photo_2024-04-23_00-31-24.jpg',
+                    'Photos/Aprel2024/photo_2024-04-23_00-31-36.jpg',
+                    'Photos/Aprel2024/photo_2024-05-08_18-48-44.jpg',
+                    'Photos/Aprel2024/photo_2024-05-20_15-05-49.jpg',
+                    'Photos/Aprel2024/photo_2024-05-24_10-18-07.jpg',
+                    'Photos/Aprel2024/photo_2024-06-01_01-34-09.jpg',
+                    'Photos/Aprel2024/photo_2024-06-15_18-20-08.jpg',
+                    'Photos/Aprel2024/photo_2024-06-19_05-38-45.jpg',
+                    'Photos/Aprel2024/photo_2024-06-21_21-58-54.jpg',
+                    'Photos/Aprel2024/photo_2024-06-25_12-30-59.jpg',
+                    'Photos/Aprel2024/photo_2024-07-12_08-45-56.jpg',
+                    'Photos/Aprel2024/photo_2024-07-12_21-32-43.jpg',
+                    'Photos/Aprel2024/photo_2024-07-12_21-34-26.jpg',
+                    'Photos/Aprel2024/photo_2024-07-03_01-02-01.jpg',
+                    
+                ],
+                album6: [
+                    'Photos/August24/photo_2024-09-27_00-52-06.jpg',
+                    'Photos/August24/photo_2024-08-05_17-34-11.jpg',
+                    'Photos/August24/photo_2024-08-11_23-20-41.jpg',
+                    'Photos/August24/photo_2024-09-04_13-56-30.jpg',
+                    'Photos/August24/photo_2024-09-18_11-23-56.jpg',
+                    'Photos/August24/photo_2024-09-27_00-51-57.jpg',
+                    'Photos/August24/photo_2024-09-27_17-04-07.jpg',
+                    'Photos/August24/photo_2024-10-02_23-15-13.jpg',
+                    'Photos/August24/photo_2024-10-23_16-48-36.jpg',
+                    'Photos/August24/photo_2024-11-04_17-56-07.jpg',
+                    
+                ]
+                
+                // Добавьте больше альбомов по мере необходимости
+            };
+    
+            albumCovers.forEach(cover => {
+                cover.addEventListener('click', () => {
+                    const albumName = cover.getAttribute('data-album');
+                    currentAlbum = albums[albumName];
+                    currentIndex = 0;
+                    openPhotoPlayer(currentIndex);
+                });
+            });
+    
+            closePhotoPlayer.addEventListener('click', closePhotoPlayerFunc);
+            prevPhoto.addEventListener('click', showPrevPhoto);
+            nextPhoto.addEventListener('click', showNextPhoto);
+    
+            function openPhotoPlayer(index) {
+                const imgSrc = currentAlbum[index];
+                photoPlayerImg.src = imgSrc;
+                photoPlayer.style.display = 'flex';
+            }
+    
+            function closePhotoPlayerFunc() {
+                photoPlayer.style.display = 'none';
+            }
+    
+            function showPrevPhoto() {
+                currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
+                openPhotoPlayer(currentIndex);
+            }
+    
+            function showNextPhoto() {
+                currentIndex = (currentIndex + 1) % currentAlbum.length;
+                openPhotoPlayer(currentIndex);
+            }
+        </script>
+
+       <!-- <button class="sectionbutton " onclick="document.location='video.html'" style=" background-color: #cce5ff;"  >
+            <h3>ЧЕМ БЫ ЗАНЯТЬСЯ</h3>
+            <p>Чтобы не ломать голову самим, тут все самое сочное</p>        
+        </button>
+
+        <button class="sectionbutton " onclick="document.location='video.html'"  style=" background-color: #f8d7da;">
+            <h3>ВСПОМНИТЬ БЫ</h3>
+            <p>Если немного забыл что к чему, то здесь все началось</p>        
+        </button>
+
+        <button class="sectionbutton " onclick="document.location='video.html'"  style=" background-color: #d4edda;">
+            <h3>БЫЛО МИЛО</h3>
+            <p>Ну было что-то милое конечно, но быстро забылось</p>        
+        </button>
+    -->
+    </main>
+    <footer>
+        <p>&copy; 2024 Любовь</p>
+    </footer>
+    
+</body>
+</html>

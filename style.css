@@ -108,7 +108,7 @@ button {
     font-size: 1.2em;
     background-color: #fff;
     color: #ff66b2;
-    animation: fadeIn 2s ease-in-out forwards;
+   /* animation: fadeIn 2s ease-in-out forwards;*/
 }
 
 .fullscreen-iframe {

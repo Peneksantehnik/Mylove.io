@@ -78,11 +78,14 @@ p {
 
 
 main {
-    display: flex;
+     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 20px;
-    margin-bottom: 5px;
+    background-color: #d90707;
+    width: 100%;
+    position: relative;
+    padding: 10px;
+    align-items: center;
 }
 .letter-container {
     width: 80%;

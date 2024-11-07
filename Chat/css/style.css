@@ -1,3 +1,4 @@
+::-webkit-scrollbar { width: 0;}
 body {
      margin: 0;
     padding: 0;
@@ -28,6 +29,16 @@ header h1 {
     margin-bottom: 20px;
     margin-top: 20px;
     animation: fadeIn 2s ease-in-out forwards;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 strong {

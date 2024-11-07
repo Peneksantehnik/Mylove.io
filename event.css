@@ -81,7 +81,10 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 5px;
+    width: 100%;
+    position: relative;
+    padding: 10px;
+    align-items: center;
 }
 
 .events-container {

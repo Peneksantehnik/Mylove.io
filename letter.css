@@ -81,7 +81,6 @@ main {
      display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #d90707;
     width: 100%;
     position: relative;
     padding: 10px;
